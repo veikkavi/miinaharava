@@ -1,0 +1,2 @@
+# miinaharava
+python harjoitustyö
