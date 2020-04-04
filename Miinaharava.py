@@ -4,6 +4,7 @@ import haravasto
 import ikkunasto
 import datetime
 
+
 tila = {
     "kentta": [],
     "miinat": 0,
@@ -14,6 +15,7 @@ tila = {
     "voitto": False,
     "vuorot": 0
 }
+
 
 def luo_kentta(leveys, korkeus):
     """
@@ -28,6 +30,7 @@ def luo_kentta(leveys, korkeus):
     tila["kentta"] = kentta
         
 
+
 def miinoita(kentta, vapaat_ruudut, n):
     """
     Asettaa kentällä n kpl miinoja satunnaisiin paikkoihin.
@@ -37,7 +40,8 @@ def miinoita(kentta, vapaat_ruudut, n):
         rivi = kentta[miina[1]]
         rivi[miina[0]] = "x"
         vapaat_ruudut.remove(miina)
-        
+ 
+ 
 def uusipeli():
     """
     Tarkistaa kentän tiedot ja luo uuden pelin lataamalla grafiikat ja alkutilan 
@@ -109,14 +113,16 @@ def tilastot():
                     "Tilastoja ei voida lukea. Tyhjennä tilastot", True)
     except FileNotFoundError:
         ikkunasto.kirjoita_tekstilaatikkoon(tilastolaatikko, "Tilastoja ei ole.")
-    
+  
+  
 def tyhjenna_tilastot():
     """
     Tyhjentää tilasto-tiedoston.
     """
     open("tilastot.txt", "w").close()
     ikkunasto.kirjoita_tekstilaatikkoon(tilastolaatikko, "Tilastoja ei ole.", True)
-    
+  
+  
 def takaisin_nappi_kasittelija():
     """
     Palaa päävalikkoon.
@@ -124,12 +130,14 @@ def takaisin_nappi_kasittelija():
     ikkunasto.lopeta()
     main()
 
+
 def lopeta_nappi_kasittelija():   
     """
     Sammuttaa päävalikon.
     """
     ikkunasto.lopeta()
-    
+  
+  
 def peli_paattyi():
     """
     Näyttää pelin tiedot, kysyy nimimerkkiä ja tallentaa ne tiedostoon. 
@@ -162,7 +170,8 @@ def peli_paattyi():
         .format(viesti, aika, tila["vuorot"], len(tila["kentta"][0]),
         len(tila["kentta"]), tila["miinat"], aikaleima))
     ikkunasto.kaynnista()
-    
+  
+  
 def tallenna_tilastot():
     """
     Tallentaa tilastot tiedostoon
@@ -176,7 +185,8 @@ def tallenna_tilastot():
                 tila["voitto"], tila["vuorot"], len(tila["kentta"][0]), len(tila["kentta"]), tila["miinat"]))
         ikkunasto.lopeta()
         main()
-                     
+ 
+ 
 def piirra_kentta():
     """
     Käsittelijäfunktio, joka piirtää kentän ruudut näkyviin peli-ikkunaan. 
@@ -199,6 +209,7 @@ def piirra_kentta():
     haravasto.piirra_ruudut() 
     haravasto.piirra_tekstia("Lippuja: {}/{}".format(tila["lippuja"], tila["miinat"]),
         0, 0, (255, 0, 0, 255), "serif", 15)
+
 
 def laske_miinat(x, y):
     """
@@ -227,7 +238,8 @@ def laske_miinat(x, y):
                 miinat += 1
     
     return miinat
-        
+ 
+ 
 def kasittele_hiiri(x, y, painike, muokkaus):
     """
     Tätä funktiota kutsutaan kun käyttäjä klikkaa sovellusikkunaa hiirellä.
@@ -250,7 +262,8 @@ def kasittele_hiiri(x, y, painike, muokkaus):
     a = x // 40
     b = len(tila["kentta"]) - y // 40 - 1
     peli(a, b, painike)
-      
+  
+  
 def peli(x, y, painike):
     """
     Merkitsee kentällä olevat tuntemattomat alueet turvalliseksi siten, että
@@ -297,7 +310,8 @@ def peli(x, y, painike):
             break
         else:
             tila["voitto"] = True
-      
+ 
+ 
 def main():
     """
     Luodaan aloitusvalikko, josta voi valita uuden pelin, lopettamisen ja 
